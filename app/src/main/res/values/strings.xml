@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Food_Runs</string>
+
+    <string name="privacy_conditions">
+    • We collect usage data to improve your experience.\n\n
+    • Your data is kept secure and never sold.\n\n
+    • Location access helps us deliver faster service.\n\n
+    • Cookies are used for personalization.\n\n
+    • You can delete your data anytime.
+</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

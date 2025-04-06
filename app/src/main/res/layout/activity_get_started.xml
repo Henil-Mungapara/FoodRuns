@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="85dp"
+    android:background="#ffffff">
+
+    <!-- Main content in vertical layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="80dp"
+        android:paddingBottom="100dp"> <!-- Leave space for bottom button -->
+
+        <!-- Food-Themed Image -->
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:src="@drawable/ic_getstarted"
+            android:padding="15dp" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delicious meals delivered fresh to your door. Order now!"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:padding="16dp" />
+    </LinearLayout>
+
+    <!-- Button fixed to bottom-right -->
+    <Button
+        android:id="@+id/btnGetStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Started"
+        android:backgroundTint="#FA003F"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:padding="12dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp" />
+</FrameLayout>

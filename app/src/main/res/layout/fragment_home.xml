@@ -1,0 +1,1029 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <!-- 🔝 Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/categoriestoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#FA003F"
+        android:elevation="4dp"
+        android:paddingTop="34dp"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Welcome Home Dashboard"
+                android:textSize="22sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- 🔁 Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnMore"
+        android:layout_below="@+id/categoriestoolbar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:gravity="center_horizontal">
+
+            <!-- 🔍 Search Bar -->
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteSearch"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Search"
+                android:background="@drawable/search_gradient"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
+                android:drawableStart="@drawable/ic_serach"
+                android:drawablePadding="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"/>
+
+            <!-- 🎉 Special Offer Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                android:layout_marginBottom="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/homecardgradient">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="16dp">
+
+                        <TextView
+                            android:id="@+id/tvOfferTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Special Offer for March"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvOfferDesc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="We are here with the best desserts in town."
+                            android:textColor="#FDEEF4"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp" />
+
+                        <Button
+                            android:id="@+id/btnBuyNow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Buy Now"
+                            android:textAllCaps="false"
+                            android:textSize="18dp"
+                            android:textColor="#FA003F"
+                            android:background="@drawable/homecardbutton"
+                            android:layout_marginTop="12dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imgBurger"
+                        android:layout_width="140dp"
+                        android:layout_height="180dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/burgur1" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Add more content here if needed -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="12dp"
+                android:gravity="center">
+
+                <!-- Card 1 -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card1"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood1"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:id="@+id/tvtitle1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/des1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice1"
+                            android:layout_below="@id/imgFood1"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd1"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood2"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice2"
+                            android:layout_below="@id/imgFood2"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd2"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="12dp"
+                android:gravity="center">
+
+                <!-- Card 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood3"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice3"
+                            android:layout_below="@id/imgFood3"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd3"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood4"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice4"
+                            android:layout_below="@id/imgFood4"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd4"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="12dp"
+                android:gravity="center">
+
+                <!-- Card 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood5"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice5"
+                            android:layout_below="@id/imgFood5"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd5"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood6"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice6"
+                            android:layout_below="@id/imgFood6"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd6"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="12dp"
+                android:gravity="center">
+
+                <!-- Card 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood7"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice7"
+                            android:layout_below="@id/imgFood7"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd7"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood8"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice8"
+                            android:layout_below="@id/imgFood8"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd8"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="12dp"
+                android:gravity="center">
+
+                <!-- Card 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood9"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice9"
+                            android:layout_below="@id/imgFood9"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd9"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:background="@drawable/search_gradient">
+
+                        <!-- 🍔 Image -->
+                        <ImageView
+                            android:id="@+id/imgFood10"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burgur1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <!-- 📝 Title + Description -->
+                        <LinearLayout
+                            android:layout_below="@id/imgFood10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tandoori Burger"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spicy grilled with mayo"
+                                android:textColor="#000000"
+                                android:textSize="12sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <!-- 💰 Price -->
+                        <TextView
+                            android:id="@+id/tvPrice10"
+                            android:layout_below="@id/imgFood10"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="60dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹129"
+                            android:textColor="#FA003F"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- ➕ Add Button -->
+                        <TextView
+                            android:id="@+id/btnAdd10"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/rounden_add_button"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 📎 Fixed Bottom Right "More..." Button -->
+    <Button
+        android:id="@+id/btnMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="More..."
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:backgroundTint="#FA003F"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:elevation="6dp"
+        android:textSize="16sp"/>
+</RelativeLayout>

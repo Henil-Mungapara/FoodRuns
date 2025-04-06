@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".Privacy_Page">
+
+    <!-- ScrollView for scrollable content -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy Policy"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:layout_marginTop="?attr/actionBarSize"
+                /> <!-- Underline Effect -->
+
+            <!-- Privacy Topics -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Personal Information: Name, Email, Profile Picture"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Financial Data: Expenses, Income, Budget Info"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Device Information: Device Type, OS, Unique IDs"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Usage Data: How you interact with the app"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:paddingBottom="12dp"/>
+
+            <!-- Additional Privacy Information -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✔ Your data is encrypted and stored securely to prevent unauthorized access."
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:paddingBottom="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✔ We do not share your personal data with third parties without your consent."
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:paddingBottom="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✔ You can request data deletion at any time by contacting support."
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:paddingBottom="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✔ We comply with global privacy laws such as GDPR and CCPA."
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:paddingBottom="20dp"/>
+
+            <!-- Checkboxes -->
+            <CheckBox
+                android:id="@+id/checkBoxTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to the Terms &amp; Conditions"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:padding="10dp"
+                android:buttonTint="@color/black"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxPrivacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to the Privacy Policy"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:padding="10dp"
+                android:buttonTint="@color/black"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Button placed at the Bottom-Right -->
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:backgroundTint="#FA003F"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        android:textSize="18dp"
+        android:elevation="8dp"
+        android:enabled="false"
+        android:alpha="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
