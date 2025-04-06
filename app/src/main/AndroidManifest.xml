@@ -15,14 +15,13 @@
         android:theme="@style/Theme.Food_Runs"
         tools:targetApi="31">
         <activity
-            android:name=".admin.User_Handle"
+            android:name=".admin.MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".Forgot_Password"
             android:exported="false" /> <!-- ADMIN Activities -->
-        <activity
-            android:name=".admin.Add_Item"
-            android:exported="false" /> <!-- USER Activities -->
+
         <activity
             android:name=".LogIn_Page"
             android:exported="false" />

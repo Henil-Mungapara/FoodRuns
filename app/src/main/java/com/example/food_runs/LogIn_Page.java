@@ -4,11 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.UserHandle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.view.View;
 import android.widget.*;
 
 import androidx.activity.EdgeToEdge;
@@ -20,8 +18,8 @@ public class LogIn_Page extends AppCompatActivity {
 
     private boolean isPasswordVisible = false;
 
-    TextView SignUp,forgot;
-    Button LogIn,LogInadmin;
+    TextView SignUp, forgot;
+    Button LogIn, LogInadmin;
     EditText etEmail, etPassword;
 
     FirebaseAuth mAuth;
@@ -34,6 +32,7 @@ public class LogIn_Page extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_log_in_page);
 
+        // UI Hooks
         SignUp = findViewById(R.id.tvLogin);
         LogIn = findViewById(R.id.btnLoginUser);
         LogInadmin = findViewById(R.id.btnLoginAdmin);
@@ -42,29 +41,24 @@ public class LogIn_Page extends AppCompatActivity {
         forgot = findViewById(R.id.tvForgotPassword);
         ImageView ivTogglePassword = findViewById(R.id.ivTogglePassword);
 
-
+        // Firebase
         mAuth = FirebaseAuth.getInstance();
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Logging in...");
         progressDialog.setCancelable(false);
 
+        // 🔄 Navigation
         SignUp.setOnClickListener(v -> {
-            Intent iNext = new Intent(getApplicationContext(), SignUp_Page.class);
-            startActivity(iNext);
+            startActivity(new Intent(getApplicationContext(), SignUp_Page.class));
             finish();
         });
 
-        LogIn.setOnClickListener(v -> signInUser());
-        forgot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iNext = new Intent(getApplicationContext(), Forgot_Password.class);
-                startActivity(iNext);
-                finish();
-            }
+        forgot.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Forgot_Password.class));
+            finish();
         });
 
+        // 👁️ Toggle password
         ivTogglePassword.setOnClickListener(v -> {
             if (isPasswordVisible) {
                 etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -77,17 +71,22 @@ public class LogIn_Page extends AppCompatActivity {
             etPassword.setSelection(etPassword.getText().length());
         });
 
-        LogInadmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // 👤 User login
+        LogIn.setOnClickListener(v -> signInUser());
 
-                Intent iNext = new Intent(getApplicationContext(), UserHandle.class);
+        // 🛠 Admin login with static credentials
+        LogInadmin.setOnClickListener(v -> {
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
+
+            if (email.equals("mungaparahenil@gmail.com") && password.equals("Henil@0508")) {
+                Intent iNext = new Intent(getApplicationContext(), com.example.food_runs.admin.MainActivity.class); // Correct class
                 startActivity(iNext);
                 finish();
-
+            } else {
+                Toast.makeText(getApplicationContext(), "Invalid Admin Credentials", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void signInUser() {
@@ -133,14 +132,10 @@ public class LogIn_Page extends AppCompatActivity {
                 .setTitle("Exit App")
                 .setMessage("Are you sure you want to exit?")
                 .setCancelable(true)
-
                 .setPositiveButton("Exit", (dialog, which) -> finishAffinity())
-
                 .setNegativeButton("Stay", (dialog, which) -> dialog.dismiss())
-
                 .setNeutralButton("Help", (dialog, which) ->
                         Toast.makeText(LogIn_Page.this, "Contact support@foodruns.com", Toast.LENGTH_LONG).show())
-
                 .show();
     }
 }
