@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,7 +9,7 @@
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/usertoolbar"
+        android:id="@+id/foodstoretoolbar"
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:background="#FA003F"
@@ -32,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Admin Dashboard"
+            android:text="Food Store Dashboard"
             android:textSize="20sp"
             android:textColor="@android:color/white"
             android:textStyle="bold"/>
@@ -40,12 +41,12 @@
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewUsers"
+        android:id="@+id/recyclerViewFood"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/usertoolbar"
+        app:layout_constraintTop_toBottomOf="@id/foodstoretoolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -60,11 +61,10 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="@id/recyclerViewUsers"
-        app:layout_constraintBottom_toBottomOf="@id/recyclerViewUsers"
+        app:layout_constraintTop_toTopOf="@id/recyclerViewFood"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerViewFood"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

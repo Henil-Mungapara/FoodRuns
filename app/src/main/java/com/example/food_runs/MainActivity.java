@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 if(id==R.id.nav_home){
                     loadfragment(new HomeFragment(),true);
                 }
+                else if(id==R.id.nav_item){
+                    loadfragment(new FoodStoreFragment(),false);
+                }
                 else if(id==R.id.nav_categories){
                     loadfragment(new CategoryFragment(),false);
                 }

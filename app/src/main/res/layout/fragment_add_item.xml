@@ -95,7 +95,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/add_item_edittext"
                 android:inputType="textMultiLine"
-                android:minLines="4"
+                android:minLines="3"
                 android:gravity="top|start" />
 
             <!-- 🔻 Item Price -->
@@ -126,6 +126,45 @@
                 android:background="@drawable/add_item_edittext"
                 android:inputType="textUri" />
 
+            <Spinner
+                android:id="@+id/spinnerCategory"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_spinner"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="12dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <!-- 🔻 Availability Radio Group -->
+            <RadioGroup
+                android:id="@+id/radioGroupAvailability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="16dp">
+
+                <RadioButton
+                    android:id="@+id/radioAvailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Available"
+                    android:textColor="@color/black"
+                    android:padding="8dp" />
+
+                <RadioButton
+                    android:id="@+id/radioNotAvailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Not Available"
+                    android:textColor="@color/black"
+                    android:padding="8dp"
+                    android:layout_marginStart="24dp" />
+            </RadioGroup>
+
             <!-- 🔘 Submit Button -->
             <Button
                 android:id="@+id/btnSubmit"
@@ -140,7 +179,6 @@
                 android:layout_marginBottom="16dp"
                 android:paddingVertical="14dp"
                 app:cornerRadius="20dp" />
-
         </LinearLayout>
     </ScrollView>
 

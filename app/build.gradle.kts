@@ -41,15 +41,23 @@ dependencies {
     // Firebase BoM to align all Firebase versions
     implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
 
-    // Firebase dependencies (no versions here)
+    // Firebase dependencies (no version needed)
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
 
-    // Optional: Add more Firebase services as needed
+    // Optional Firebase tools
     // implementation("com.google.firebase:firebase-analytics")
 
-    // Lottie for animations
+    // Glide for image loading
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+
+    // Lottie animation
     implementation("com.airbnb.android:lottie:6.1.0")
+
+    // OkHttp for network requests
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
     // Testing
     testImplementation(libs.junit)
