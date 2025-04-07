@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp"
-        android:gravity="center">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/itemImage"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -29,7 +29,8 @@
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#000000"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/itemDescription"
@@ -38,7 +39,8 @@
             android:text="Description goes here"
             android:textSize="13sp"
             android:textColor="#555555"
-            android:layout_marginTop="2dp" />
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/itemCategory"
@@ -47,7 +49,8 @@
             android:text="Category"
             android:textSize="13sp"
             android:textColor="#777777"
-            android:layout_marginTop="2dp" />
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/itemAvailability"
@@ -57,7 +60,8 @@
             android:textSize="13sp"
             android:textStyle="bold"
             android:textColor="#4CAF50"
-            android:layout_marginTop="2dp" />
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/itemPrice"
@@ -67,7 +71,40 @@
             android:textColor="#FA003F"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginTop="6dp" />
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- Button Row (now Icon Row) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/btnAddToCartIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_addtocart"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/round_shape"
+                android:padding="8dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/btnBuyNowIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_buynow"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/round_shape"
+                android:padding="8dp" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

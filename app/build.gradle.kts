@@ -51,6 +51,7 @@ dependencies {
 
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.recyclerview)
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
 
     // Lottie animation
@@ -64,3 +65,4 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
+

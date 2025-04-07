@@ -1,63 +1,82 @@
 package com.example.food_runs;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CartFragment extends Fragment {
+
+    private RecyclerView recyclerView;
+    private CardAdapter cardAdapter;
+    private List<CartItem> cartItems;
+    private FirebaseFirestore firestore;
+    private FirebaseAuth auth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout and store in a View variable
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        // Initialize Toolbar
-        Toolbar toolbar = view.findViewById(R.id.carttoolbar);
-        if (toolbar != null) {
-            ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-            if (((AppCompatActivity) requireActivity()).getSupportActionBar() != null) {
-                ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-            }
+        recyclerView = view.findViewById(R.id.recyclerViewCart);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-            // Handle Back Arrow Click
-            ImageView backArrow = view.findViewById(R.id.backArrow);
-            if (backArrow != null) {
-                backArrow.setOnClickListener(v -> {
-                    // Clear fragment stack
-                    requireActivity().getSupportFragmentManager()
-                            .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        cartItems = new ArrayList<>();
+        cardAdapter = new CardAdapter(getContext(), cartItems);
+        recyclerView.setAdapter(cardAdapter);
 
-                    // Load CartFragment again (optional, if meant to refresh)
-                    requireActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frame_container, new CategoryFragment())
-                            .commit();
+        loadCartItems();
 
-                    // Update BottomNavigationView selection
-                    BottomNavigationView bottomNav = requireActivity().findViewById(R.id.bottom_navigation);
-                    if (bottomNav != null) {
-                        bottomNav.setSelectedItemId(R.id.nav_categories);
+        return view;
+    }
+
+    private void loadCartItems() {
+        String userId = auth.getCurrentUser().getUid();
+
+        firestore.collection("Cart")
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    cartItems.clear();
+                    if (documentSnapshot.exists()) {
+                        List<Map<String, Object>> items = (List<Map<String, Object>>) documentSnapshot.get("items");
+                        if (items != null) {
+                            for (Map<String, Object> itemData : items) {
+                                String title = (String) itemData.get("name");
+                                String description = (String) itemData.get("description");
+                                String price = (String) itemData.get("price");
+                                String category = (String) itemData.get("category");
+                                String imageUrl = (String) itemData.get("imageUrl");
+
+                                CartItem cartItem = new CartItem(title, description, category, price, imageUrl);
+                                cartItems.add(cartItem);
+                            }
+                            cardAdapter.notifyDataSetChanged();
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "Your cart is empty.", Toast.LENGTH_SHORT).show();
                     }
-                });
-            }
-        }
-
-        return view; // ✅ Return after setting everything up
+                })
+                .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to load cart.", Toast.LENGTH_SHORT).show());
     }
 }

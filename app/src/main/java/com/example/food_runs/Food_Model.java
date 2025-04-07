@@ -1,28 +1,30 @@
 package com.example.food_runs;
 
-public class Food_Model {
+import java.io.Serializable;
+
+public class Food_Model implements Serializable {
     private String title;
     private String description;
     private String price;
     private String category;
     private String availability;
-    private String imagePath;  // <-- important!
+    private String imagePath;
     private String imageUrl;
 
     public Food_Model() {
-        // Empty constructor needed for Firestore
+        // Required for Firebase
     }
 
-    public Food_Model(String title, String description, String price, String category, String availability, String imagePath) {
+    public Food_Model(String title, String description, String price, String category, String availability, String imagePath, String imageUrl) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
         this.availability = availability;
         this.imagePath = imagePath;
+        this.imageUrl = imageUrl;
     }
 
-    // Getters
     public String getTitle() { return title; }
     public String getDescription() { return description; }
     public String getPrice() { return price; }
@@ -31,7 +33,6 @@ public class Food_Model {
     public String getImagePath() { return imagePath; }
     public String getImageUrl() { return imageUrl; }
 
-    // Setters
     public void setTitle(String title) { this.title = title; }
     public void setDescription(String description) { this.description = description; }
     public void setPrice(String price) { this.price = price; }
