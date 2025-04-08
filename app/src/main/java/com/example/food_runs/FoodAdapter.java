@@ -70,7 +70,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             context.startActivity(intent);
         });
 
-        // 🔘 Add to Cart button functionality
         holder.addToCartIcon.setOnClickListener(v -> {
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -79,50 +78,46 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 return;
             }
 
-            // Generate a unique ID for the cart item
-            String itemId = UUID.randomUUID().toString();
-
-            Map<String, Object> item = new HashMap<>();
-            item.put("itemId", itemId);
-            item.put("title", model.getTitle());
-            item.put("description", model.getDescription());
-            item.put("category", model.getCategory());
-            item.put("price", model.getPrice());
-            item.put("imageUrl", model.getImageUrl());
-
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("Cart").document(userId)
+
+            db.collection("Cart")
+                    .document(userId)
+                    .collection("items")
+                    .whereEqualTo("title", model.getTitle()) // Optional: Prevent duplicates by title
                     .get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
-                            db.collection("Cart").document(userId)
-                                    .update("items", FieldValue.arrayUnion(item))
-                                    .addOnSuccessListener(aVoid -> {
-                                        Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Toast.makeText(context, "Failed to add item to cart", Toast.LENGTH_SHORT).show();
-                                        Log.e("FirestoreError", "Error adding item to cart: ", e);
-                                    });
+                    .addOnSuccessListener(query -> {
+                        if (!query.isEmpty()) {
+                            Toast.makeText(context, "Item already in cart", Toast.LENGTH_SHORT).show();
                         } else {
-                            Map<String, Object> cartData = new HashMap<>();
-                            cartData.put("items", FieldValue.arrayUnion(item));
-                            db.collection("Cart").document(userId)
-                                    .set(cartData)
-                                    .addOnSuccessListener(aVoid -> {
+                            String docId = UUID.randomUUID().toString(); // or model.getTitle().replace(" ", "_");
+
+                            Map<String, Object> item = new HashMap<>();
+                            item.put("title", model.getTitle());
+                            item.put("description", model.getDescription());
+                            item.put("category", model.getCategory());
+                            item.put("price", model.getPrice());
+                            item.put("imageUrl", model.getImageUrl());
+
+                            db.collection("Cart")
+                                    .document(userId)
+                                    .collection("items")
+                                    .document(docId)
+                                    .set(item)
+                                    .addOnSuccessListener(unused -> {
                                         Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
                                     })
                                     .addOnFailureListener(e -> {
-                                        Toast.makeText(context, "Failed to create cart", Toast.LENGTH_SHORT).show();
-                                        Log.e("FirestoreError", "Error creating cart document: ", e);
+                                        Toast.makeText(context, "Failed to add item", Toast.LENGTH_SHORT).show();
+                                        Log.e("Firestore", "Add to cart failed", e);
                                     });
                         }
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(context, "Failed to check cart document", Toast.LENGTH_SHORT).show();
-                        Log.e("FirestoreError", "Error checking cart document: ", e);
+                        Toast.makeText(context, "Failed to check cart", Toast.LENGTH_SHORT).show();
+                        Log.e("Firestore", "Cart check failed", e);
                     });
         });
+
     }
 
     @Override

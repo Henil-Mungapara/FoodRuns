@@ -79,7 +79,7 @@ public class LogIn_Page extends AppCompatActivity {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            if (email.equals("mungaparahenil@gmail.com") && password.equals("Henil@0508")) {
+            if (email.equals("radhusanyaja@gmail.com") && password.equals("Radhu@23042005")) {
                 Intent iNext = new Intent(getApplicationContext(), com.example.food_runs.admin.MainActivity.class); // Correct class
                 startActivity(iNext);
                 finish();

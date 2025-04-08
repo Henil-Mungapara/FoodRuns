@@ -11,6 +11,11 @@
         android:title="Add Item" />
 
     <item
+        android:id="@+id/nav_manage"
+        android:icon="@drawable/manage_item"
+        android:title="Add Item" />
+
+    <item
         android:id="@+id/nav_admin_profile"
         android:icon="@drawable/ic_profile"
         android:title="Profile" />

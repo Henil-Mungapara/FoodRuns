@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,11 @@ public class FoodStoreFragment extends Fragment {
     private RecyclerView recyclerView;
     private FoodAdapter adapter;
     private List<Food_Model> foodList;
+
+    private AutoCompleteTextView searchView;
+    private ArrayAdapter<String> searchAdapter;
+    private List<String> titleList;
+    private List<Food_Model> allFoodItems;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,8 +77,22 @@ public class FoodStoreFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerViewFood);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         foodList = new ArrayList<>();
+        allFoodItems = new ArrayList<>();
         adapter = new FoodAdapter(getContext(), foodList);
         recyclerView.setAdapter(adapter);
+
+        // Setup Search
+        searchView = view.findViewById(R.id.autoCompleteSearchfoodstorepage);
+        titleList = new ArrayList<>();
+        searchAdapter = new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_dropdown_item_1line, titleList);
+        searchView.setAdapter(searchAdapter);
+        searchView.setThreshold(1); // show suggestions from 1st character
+
+        searchView.setOnItemClickListener((adapterView, view1, position, id) -> {
+            String selectedTitle = adapterView.getItemAtPosition(position).toString();
+            filterFoodList(selectedTitle);
+        });
 
         fetchDataFromFirestore();
 
@@ -82,10 +103,12 @@ public class FoodStoreFragment extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
-        db.collection("MenuItems") // or "FoodItems" depending on your admin side
+        db.collection("MenuItems")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     foodList.clear();
+                    titleList.clear();
+                    allFoodItems.clear();
 
                     if (queryDocumentSnapshots.isEmpty()) {
                         if (getView() != null) {
@@ -103,14 +126,22 @@ public class FoodStoreFragment extends Fragment {
 
                     for (DocumentSnapshot snapshot : queryDocumentSnapshots) {
                         Food_Model model = snapshot.toObject(Food_Model.class);
+                        if (model == null) continue;
 
-                        if (model != null && model.getImagePath() != null && !model.getImagePath().isEmpty()) {
+                        if (model.getTitle() != null) {
+                            titleList.add(model.getTitle());
+                        }
+
+                        allFoodItems.add(model);
+
+                        if (model.getImagePath() != null && !model.getImagePath().isEmpty()) {
                             storage.getReference().child(model.getImagePath())
                                     .getDownloadUrl()
                                     .addOnSuccessListener(uri -> {
                                         model.setImageUrl(uri.toString());
                                         foodList.add(model);
                                         adapter.notifyDataSetChanged();
+                                        searchAdapter.notifyDataSetChanged();
                                     })
                                     .addOnFailureListener(e -> {
                                         Log.e("FirebaseStorage", "Image load failed", e);
@@ -119,6 +150,7 @@ public class FoodStoreFragment extends Fragment {
                         } else {
                             foodList.add(model);
                             adapter.notifyDataSetChanged();
+                            searchAdapter.notifyDataSetChanged();
                         }
                     }
                 })
@@ -129,5 +161,18 @@ public class FoodStoreFragment extends Fragment {
                         noDataText.setVisibility(View.VISIBLE);
                     }
                 });
+    }
+
+    private void filterFoodList(String title) {
+        List<Food_Model> filteredList = new ArrayList<>();
+        for (Food_Model item : allFoodItems) {
+            if (item.getTitle() != null && item.getTitle().equalsIgnoreCase(title)) {
+                filteredList.add(item);
+            }
+        }
+
+        foodList.clear();
+        foodList.addAll(filteredList);
+        adapter.notifyDataSetChanged();
     }
 }

@@ -54,7 +54,6 @@ public class CheckOut extends AppCompatActivity {
         adapter = new ItemCartAdapter(this, cartList);
         recyclerView.setAdapter(adapter);
 
-        // Bind all form inputs
         editTextName = findViewById(R.id.editTextName);
         editTextPhone = findViewById(R.id.editTextPhone);
         editTextAddress = findViewById(R.id.editTextAddress);
@@ -114,7 +113,6 @@ public class CheckOut extends AppCompatActivity {
             return;
         }
 
-        // Generate unique order ID under user
         String orderId = db.collection("Orders").document(userId).collection("Orders").document().getId();
 
         Map<String, Object> orderInfo = new HashMap<>();
@@ -134,17 +132,40 @@ public class CheckOut extends AppCompatActivity {
                 .collection("Orders").document(orderId)
                 .set(orderInfo)
                 .addOnSuccessListener(aVoid -> {
+                    List<Map<String, Object>> itemsList = new ArrayList<>();
+                    int totalAmount = 0;
+
                     for (ItemCartModel item : cartList) {
-                        db.collection("Orders").document(userId)
-                                .collection("Orders").document(orderId)
-                                .collection("Items")
-                                .add(item);
+                        Map<String, Object> itemMap = new HashMap<>();
+                        itemMap.put("title", item.getTitle());
+                        itemMap.put("price", item.getPrice());
+                        itemMap.put("quantity", item.getQuantity());
+                        itemMap.put("imageUrl", item.getImageUrl());
+
+                        try {
+                            totalAmount += Integer.parseInt(item.getPrice()) * item.getQuantity();
+                        } catch (NumberFormatException ignored) {}
+
+                        itemsList.add(itemMap);
                     }
 
-                    Toast.makeText(CheckOut.this, "Order Placed Successfully!\nOrder ID: " + orderId, Toast.LENGTH_LONG).show();
-                    clearCart();
-                    clearInputs();
-                    redirectToStore();
+                    Map<String, Object> singleItemWrap = new HashMap<>();
+                    singleItemWrap.put("items", itemsList);
+                    singleItemWrap.put("totalAmount", totalAmount);
+                    singleItemWrap.put("totalItems", cartList.size());
+
+                    db.collection("Orders").document(userId)
+                            .collection("Orders").document(orderId)
+                            .update(singleItemWrap)
+                            .addOnSuccessListener(unused -> {
+                                Toast.makeText(CheckOut.this, "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
+                                clearCart();
+                                clearInputs();
+                                redirectToStore();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(CheckOut.this, "Failed to add items: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(CheckOut.this, "Order Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -153,7 +174,6 @@ public class CheckOut extends AppCompatActivity {
 
     private void clearCart() {
         CollectionReference cartRef = db.collection("Cart").document(userId).collection("items");
-
         cartRef.get().addOnSuccessListener(querySnapshot -> {
             for (DocumentSnapshot doc : querySnapshot) {
                 doc.getReference().delete();
@@ -175,8 +195,7 @@ public class CheckOut extends AppCompatActivity {
     }
 
     private void redirectToStore() {
-        Intent intent = new Intent(CheckOut.this, FoodStoreFragment.class); // replace with your main shop activity
-        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(CheckOut.this, OrderSuccess.class); // or your shop screen
         startActivity(intent);
         finish();
     }

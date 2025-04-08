@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".FoodStoreFragment">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -14,30 +15,57 @@
         android:layout_height="75dp"
         android:background="#FA003F"
         android:elevation="4dp"
-        android:paddingTop="34dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/backArrow"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_back"
-            android:contentDescription="Back"/>
+        <!-- Inner layout to handle items inside toolbar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-        <TextView
-            android:id="@+id/toolbarTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Food Store Dashboard"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/backArrow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Back" />
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Food Store Dashboard"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
+
+    <!-- 🔍 Search Bar -->
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteSearchfoodstorepage"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Search"
+        android:background="@drawable/search_gradient"
+        android:textColorHint="#000000"
+        android:textColor="#000000"
+        android:drawableStart="@drawable/ic_serach"
+        android:drawablePadding="10dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@id/foodstoretoolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -46,7 +74,7 @@
         android:layout_height="0dp"
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/foodstoretoolbar"
+        app:layout_constraintTop_toBottomOf="@id/autoCompleteSearchfoodstorepage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -64,7 +92,6 @@
         app:layout_constraintTop_toTopOf="@id/recyclerViewFood"
         app:layout_constraintBottom_toBottomOf="@id/recyclerViewFood"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

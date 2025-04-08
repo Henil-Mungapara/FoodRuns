@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 loadFragment(new AddItemFragment());
             } else if (id == R.id.nav_admin_profile) {
                 loadFragment(new AdminProfileFragment());
+            } else if (id == R.id.nav_manage) {
+                loadFragment(new ManageItemFragment());
             }
 
             return true;

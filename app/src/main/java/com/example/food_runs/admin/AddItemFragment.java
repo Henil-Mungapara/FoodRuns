@@ -8,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.food_runs.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -36,7 +40,33 @@ public class AddItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_item, container, false);
 
-        etTitle = view.findViewById(R.id.etItemTitle);
+        Toolbar toolbar = view.findViewById(R.id.additemtoolbar);
+        if (toolbar != null) {
+            ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+            if (((AppCompatActivity) requireActivity()).getSupportActionBar() != null) {
+                ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+            }
+
+            ImageView backArrow = view.findViewById(R.id.backArrow);
+            if (backArrow != null) {
+                backArrow.setOnClickListener(v -> {
+                    requireActivity().getSupportFragmentManager()
+                            .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                    requireActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame_container, new UsersManageFragment())
+                            .commit();
+
+                    BottomNavigationView bottomNav = requireActivity().findViewById(R.id.bottom_navigation);
+                    if (bottomNav != null) {
+                        bottomNav.setSelectedItemId(R.id.nav_users);
+                    }
+                });
+            }
+        }
+
+
+            etTitle = view.findViewById(R.id.etItemTitle);
         etDesc = view.findViewById(R.id.etItemDesc);
         etPrice = view.findViewById(R.id.etItemPrice);
         etImageUrl = view.findViewById(R.id.etImageUrl);
