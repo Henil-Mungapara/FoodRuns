@@ -60,17 +60,28 @@ public class ManageItemAdapter extends RecyclerView.Adapter<ManageItemAdapter.Ma
 
         // Handle Delete Button
         holder.btnDelete.setOnClickListener(v -> {
-            FirebaseFirestore.getInstance().collection("MenuItems")
-                    .document(item.getId())
-                    .delete()
-                    .addOnSuccessListener(unused -> {
-                        Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show();
-                        itemList.remove(position);
-                        notifyItemRemoved(position);
+            new android.app.AlertDialog.Builder(context)
+                    .setTitle("Delete Item")
+                    .setMessage("Are you sure you want to delete this item?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        // Proceed with deletion
+                        FirebaseFirestore.getInstance().collection("MenuItems")
+                                .document(item.getId())
+                                .delete()
+                                .addOnSuccessListener(unused -> {
+                                    Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show();
+                                    itemList.remove(position);
+                                    notifyItemRemoved(position);
+                                    notifyItemRangeChanged(position, itemList.size()); // 🔁 important for RecyclerView consistency
+                                })
+                                .addOnFailureListener(e ->
+                                        Toast.makeText(context, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                     })
-                    .addOnFailureListener(e ->
-                            Toast.makeText(context, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                    .show();
         });
+
+
     }
 
     @Override
