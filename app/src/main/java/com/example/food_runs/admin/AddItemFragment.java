@@ -40,6 +40,7 @@ public class AddItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_item, container, false);
 
+        // Toolbar setup
         Toolbar toolbar = view.findViewById(R.id.additemtoolbar);
         if (toolbar != null) {
             ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
@@ -48,21 +49,19 @@ public class AddItemFragment extends Fragment {
             }
 
             ImageView backArrow = view.findViewById(R.id.backArrow);
-            if (backArrow != null) {
-                backArrow.setOnClickListener(v -> {
-                    requireActivity().getSupportFragmentManager()
-                            .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            backArrow.setOnClickListener(v -> {
+                requireActivity().getSupportFragmentManager()
+                        .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-                    requireActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frame_container, new UsersManageFragment())
-                            .commit();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.admin_frame_container, new UsersManageFragment())
+                        .commit();
 
-                    BottomNavigationView bottomNav = requireActivity().findViewById(R.id.bottom_navigation);
-                    if (bottomNav != null) {
-                        bottomNav.setSelectedItemId(R.id.nav_users);
-                    }
-                });
-            }
+                BottomNavigationView bottomNav = requireActivity().findViewById(R.id.admin_bottom_navigation);
+                if (bottomNav != null) {
+                    bottomNav.setSelectedItemId(R.id.nav_users);
+                }
+            });
         }
 
 

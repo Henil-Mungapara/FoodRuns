@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food_runs.CartFragment;
+import com.example.food_runs.HomeFragment;
 import com.example.food_runs.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.*;
@@ -35,8 +36,7 @@ public class ManageItemFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_manage_item, container, false);
 
-        // ======== Toolbar setup ========
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        // Toolbar setup
         Toolbar toolbar = view.findViewById(R.id.manageitemtoolbar);
         if (toolbar != null) {
             ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
@@ -45,21 +45,19 @@ public class ManageItemFragment extends Fragment {
             }
 
             ImageView backArrow = view.findViewById(R.id.backArrow);
-            if (backArrow != null) {
-                backArrow.setOnClickListener(v -> {
-                    requireActivity().getSupportFragmentManager()
-                            .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            backArrow.setOnClickListener(v -> {
+                requireActivity().getSupportFragmentManager()
+                        .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-                    requireActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frame_container, new AddItemFragment())
-                            .commit();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.admin_frame_container, new AddItemFragment())
+                        .commit();
 
-                    BottomNavigationView bottomNav = requireActivity().findViewById(R.id.bottom_navigation);
-                    if (bottomNav != null) {
-                        bottomNav.setSelectedItemId(R.id.nav_add);
-                    }
-                });
-            }
+                BottomNavigationView bottomNav = requireActivity().findViewById(R.id.admin_bottom_navigation);
+                if (bottomNav != null) {
+                    bottomNav.setSelectedItemId(R.id.nav_add);
+                }
+            });
         }
 
         // ======== RecyclerView setup ========
