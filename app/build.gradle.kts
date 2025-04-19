@@ -59,6 +59,7 @@ dependencies {
 
     // OkHttp for network requests
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.razorpay:checkout:1.6.40")
 
     // Testing
     testImplementation(libs.junit)

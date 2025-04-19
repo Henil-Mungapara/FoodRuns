@@ -30,30 +30,23 @@ public class MainActivity extends AppCompatActivity {
         bnview = findViewById(R.id.bottom_navigation);
 
 
-        bnview.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bnview.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
                 int id = item.getItemId();
-                if(id==R.id.nav_home){
-                    loadfragment(new HomeFragment(),true);
+                if(id == R.id.nav_home) {
+                    loadfragment(new HomeFragment(), true);
+                } else if(id == R.id.nav_item) {
+                    loadfragment(new FoodStoreFragment(), false);
+                } else if(id == R.id.nav_cart) {
+                    loadfragment(new CartFragment(), false);
+                } else {
+                    loadfragment(new ProfileFragment(), false);
                 }
-                else if(id==R.id.nav_item){
-                    loadfragment(new FoodStoreFragment(),false);
-                }
-                /*else if(id==R.id.nav_categories){
-                    loadfragment(new CategoryFragment(),false);
-                }*/
-                else if(id==R.id.nav_cart){
-                    loadfragment(new CartFragment(),false);
-                }
-                else{
-                    loadfragment(new ProfileFragment(),false);
-                }
-
                 return true;
             }
         });
+
         bnview.setSelectedItemId(R.id.nav_home);
 
     }

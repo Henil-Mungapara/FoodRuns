@@ -41,6 +41,10 @@ public class HomeFragment extends Fragment {
         rootView.findViewById(R.id.card1).setOnClickListener(v ->
                 startActivity(new Intent(getActivity(), FoodStoreFragment.class)));
 
+        // 👉 "More..." button click
+        rootView.findViewById(R.id.btnMore).setOnClickListener(v ->
+                startActivity(new Intent(getActivity(), FoodStoreFragment.class)));
+
         return rootView;
     }
 

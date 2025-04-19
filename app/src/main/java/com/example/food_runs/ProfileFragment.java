@@ -29,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileFragment extends Fragment {
 
-    private Button btnSignOut;
+    private Button btnSignOut, btnEdit;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
 
@@ -37,6 +37,8 @@ public class ProfileFragment extends Fragment {
 
     private static final String PREFS_NAME = "MyPrefs";
     private static final String KEY_IS_LOGGED_OUT = "isLoggedOut";
+
+    private static final int EDIT_PROFILE_REQUEST_CODE = 100;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,11 +56,18 @@ public class ProfileFragment extends Fragment {
         tvEmail = view.findViewById(R.id.tvEmail);
         tvMobile = view.findViewById(R.id.tvMobile);
         btnSignOut = view.findViewById(R.id.btnSignOut);
+        btnEdit = view.findViewById(R.id.btnEdit);
 
         // Load user info
         loadUserProfile();
 
         btnSignOut.setOnClickListener(v -> signOutUser());
+
+        btnEdit.setOnClickListener(v -> {
+            // Start the Edit_Profile activity with a request code
+            Intent iNext = new Intent(getContext(), Edit_Profile.class);
+            startActivityForResult(iNext, EDIT_PROFILE_REQUEST_CODE);
+        });
 
         // Toolbar setup
         Toolbar toolbar = view.findViewById(R.id.profiletoolbar);
@@ -135,5 +144,14 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
             requireActivity().finish();
         }, 1500);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EDIT_PROFILE_REQUEST_CODE && resultCode == AppCompatActivity.RESULT_OK) {
+            // After returning from Edit_Profile, reload the profile data
+            loadUserProfile();
+        }
     }
 }

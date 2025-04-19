@@ -2,13 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.food_runs">
-
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION"
         tools:ignore="CoarseFineLocation" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -22,13 +22,18 @@
         android:theme="@style/Theme.Food_Runs"
         tools:targetApi="31">
         <activity
-            android:name=".OrderSuccess"
+            android:name=".Edit_Profile"
             android:exported="false" />
-        <!-- Add Google Play Services metadata -->
+        <!-- ✅ Correct Razorpay API key metadata -->
+        <meta-data
+            android:name="com.razorpay.API_KEY"
+            android:value="rzp_test_5fW6QYgf92sms3" /> <!-- Google Play Services (if needed) -->
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
+            android:value="@integer/google_play_services_version" /> <!-- Activities -->
+        <activity
+            android:name=".OrderSuccess"
+            android:exported="false" />
         <activity
             android:name=".CheckOut"
             android:exported="false" />
@@ -37,7 +42,7 @@
             android:exported="false" />
         <activity
             android:name=".Forgot_Password"
-            android:exported="false" /> <!-- ADMIN Activities -->
+            android:exported="false" />
         <activity
             android:name=".LogIn_Page"
             android:exported="true" />
@@ -52,7 +57,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" /> <!-- Launcher -->
+            android:exported="true" /> <!-- Launcher Activity -->
         <activity
             android:name=".Splash_Screen"
             android:exported="true">

@@ -1,5 +1,6 @@
 package com.example.food_runs;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,7 +58,6 @@ public class Forgot_Password extends AppCompatActivity {
                 .addOnSuccessListener(querySnapshots -> {
                     progressDialog.dismiss();
                     if (!querySnapshots.isEmpty()) {
-                        // Email is found in Firestore
                         sendResetLink(email);
                     } else {
                         Toast.makeText(this, "Email is not registered", Toast.LENGTH_SHORT).show();
@@ -80,8 +80,6 @@ public class Forgot_Password extends AppCompatActivity {
                     progressDialog.dismiss();
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Reset link sent to your email.", Toast.LENGTH_LONG).show();
-
-                        // Redirect to login screen after short delay
                         new android.os.Handler().postDelayed(() -> {
                             Intent intent = new Intent(Forgot_Password.this, LogIn_Page.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -92,5 +90,23 @@ public class Forgot_Password extends AppCompatActivity {
                         Toast.makeText(this, "Failed to send reset link.", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    // 🔙 Back press with confirmation
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.ic_exit);
+        builder.setTitle("Exit Password Reset");
+        builder.setMessage("Are you sure you want to exit this page?");
+
+        builder.setPositiveButton("Yes, Exit", (dialog, which) -> {
+            Intent iNext = new Intent(this, HomeFragment.class);
+            startActivity(iNext);// finish activity
+        });
+
+        builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+
+        builder.show();
     }
 }
